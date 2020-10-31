@@ -1,13 +1,14 @@
 package com.example.moodtracker2
 
-
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,18 +17,45 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // RecyclerView
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview_id)
-            recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-            recyclerView.adapter = MyAdapter()
+        recyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = MyAdapter()
+    }
 
-        var mShowDialogBtn = findViewById<ImageButton>(R.id.addNote_BTN)
+        // AlertDialog for adding a comment
 
-        mShowDialogBtn.setOnClickListener(){
+    val positiveButtonClick = { dialog: DialogInterface, which: Int ->}
+    val negativeButtonClick = { dialog: DialogInterface, which: Int ->}
 
-            MaterialAlertDialogBuilder(this)
-                .setTitle(resources.getString(R.string.title))
-                .setMessage(resources.getString(R.string.supporting_text))
-                .show()
+    fun addNote(view: View) {
+
+        val builder = AlertDialog.Builder(this)
+        val inflater =layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.comment_edit_text, null)
+
+
+        with(builder)
+        {
+            setMessage("Comment")
+            setView(dialogLayout)
+            setPositiveButton("CONFIRM",DialogInterface.OnClickListener(positiveButtonClick))
+            setNegativeButton("CANCEL", DialogInterface.OnClickListener(negativeButtonClick))
+            show()
         }
     }
+
+        // Intent - history button and HistoryActivity, dialogFragment or history_layout?
+
+    fun history(view: View) {
+
+        // New Activity to open HistoryActivity
+        var historyActivity: Intent = Intent(applicationContext, HistoryActivity::class.java)
+        startActivity(historyActivity)
+
+    }
+
+
+
 }
