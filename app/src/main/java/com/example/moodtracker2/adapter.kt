@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.nonindividual_mood_layout.view.*
+import kotlinx.android.synthetic.main.mood_layout.view.*
 
 class MyViewHolder(val view : View):RecyclerView.ViewHolder(view)
 
@@ -14,7 +14,7 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
-        val nonindividual_mood = layoutInflater.inflate(R.layout.nonindividual_mood_layout, parent, false)
+        val nonindividual_mood = layoutInflater.inflate(R.layout.mood_layout, parent, false)
         return MyViewHolder(nonindividual_mood)
 
     }
