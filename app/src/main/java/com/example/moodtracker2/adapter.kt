@@ -3,9 +3,11 @@ package com.example.moodtracker2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.mood_layout.view.*
+import java.time.LocalDate
 
 class MyViewHolder(val view : View):RecyclerView.ViewHolder(view)
 
@@ -23,13 +25,14 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
 
         val context = holder.view.context
 
-        var emoji = holder.view.emoji_img
-        var background = holder.view.my_layout_id
-        var moodSelected = position
+        val emoji = holder.view.emoji_img
+        val background = holder.view.moodLayout_id
+        val moodSelected = position
 
         when(moodSelected){
             0 -> {emoji.setImageResource(R.drawable.smiley_super_happy)
                 background.setBackgroundColor(context.resources.getColor(R.color.banana_yellow))
+
             }
 
             1 -> {emoji.setImageResource(R.drawable.smiley_happy)
