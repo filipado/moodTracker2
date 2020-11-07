@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.comment_edit_text.*
-import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +37,12 @@ class MainActivity : AppCompatActivity() {
             // This makes mood_layout snap to grid (full screen)
             PagerSnapHelper().attachToRecyclerView(this)
         }
+
+        //Accessing Recycler View position
+
+        val widokPozycji = findViewById<TextView>(R.id.textView_position)
+        val pozycjaAdaptera = recyclerView.layoutManager.findContainingItemView()
+
 
 
 
