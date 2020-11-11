@@ -34,17 +34,18 @@ class MainActivity : AppCompatActivity() {
                 LinearLayoutManager.HORIZONTAL,
                 false)
             adapter = MyAdapter()
+
+
             // This makes mood_layout snap to grid (full screen)
             PagerSnapHelper().attachToRecyclerView(this)
         }
+        //Accessing Recycler View position and displaying it in the TextView
+        recyclerView.setOnClickListener(){
+            val position = MyViewHolder().adapterPosition.toString()
+            val displayPosition: TextView = findViewById(R.id.textView_position)
+            displayPosition.setText(position)
 
-        //Accessing Recycler View position
-
-        val widokPozycji = findViewById<TextView>(R.id.textView_position)
-        val pozycjaAdaptera = recyclerView.layoutManager.findContainingItemView()
-
-
-
+        }
 
         //Adding AlertDialog to add comments
         btn_addNote.setOnClickListener {
@@ -75,14 +76,20 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Comment Saved", Toast.LENGTH_SHORT).show()
                 //close Dialog on CONFIRM button click
                 builder.dismiss()
-            }
-            //CANCEL button that closes Dialog on click
-            builder.cancelCommentButton.setOnClickListener{
-                builder.dismiss()
-            }
-            builder.setOnDismissListener {
+           }
+           //CANCEL button that closes Dialog on click
+           builder.cancelCommentButton.setOnClickListener{
+               builder.dismiss()
+           }
+           builder.setOnDismissListener {
 
             }
+
+
+            //Aktualny dzien
+            //val dzisiaj = LocalDate.now().toString()
+            //val textViewMainActivity = findViewById<TextView>(R.id.textView_position)
+            //textViewMainActivity.setText(dzisiaj)
         }
     } // onCreate FINISHES
 
@@ -93,7 +100,4 @@ class MainActivity : AppCompatActivity() {
         var historyActivity: Intent = Intent(applicationContext, HistoryActivity::class.java)
         startActivity(historyActivity)
     }
-
-
-
 } // MAIN ACTIVITY FINISHES
