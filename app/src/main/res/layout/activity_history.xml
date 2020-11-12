@@ -163,7 +163,7 @@
         app:layout_constraintTop_toBottomOf="@+id/two_days_ago_progBar" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/yesterday_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -172,5 +172,15 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/yesterday_progBar"
         app:layout_constraintTop_toBottomOf="@+id/two_days_ago_progBar" />
+
+    <ImageView
+        android:id="@+id/comment_imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/two_days_ago_progBar"
+        app:srcCompat="@drawable/ic_comment_black_48px" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,6 @@ import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
@@ -16,12 +15,13 @@ import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.comment_edit_text.*
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+       override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -32,20 +32,14 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(
                 this@MainActivity,
                 LinearLayoutManager.HORIZONTAL,
-                false)
+                false
+            )
             adapter = MyAdapter()
 
-
-            // This makes mood_layout snap to grid (full screen)
+            // This makes mood_layout snap to grid when scrolling
             PagerSnapHelper().attachToRecyclerView(this)
         }
-        //Accessing Recycler View position and displaying it in the TextView
-        recyclerView.setOnClickListener(){
-            val position = MyViewHolder().adapterPosition.toString()
-            val displayPosition: TextView = findViewById(R.id.textView_position)
-            displayPosition.setText(position)
 
-        }
 
         //Adding AlertDialog to add comments
         btn_addNote.setOnClickListener {
@@ -60,17 +54,16 @@ class MainActivity : AppCompatActivity() {
             builder.confirmCommentButton.setOnClickListener {
 
                 //creating instance of Shared Preferences
-                val pref = getSharedPreferences("commentSharedPreferences", Context.MODE_PRIVATE)
+                val pref = getSharedPreferences("comment", Context.MODE_PRIVATE)
                 val editor = pref.edit()
+                val date = LocalDate.now().toString()
+                val comment = builder.comment_editText.text.toString()
+
+                editor.putString(date, comment)
+                editor.apply()
 
                 //ACCESSING COMMENT WRITTEN BY USER in AlertDialog.Builder - val builder
-                val insertedName = builder.editTextComment.text.toString()
 
-                //Saving shared Preferences
-                editor.apply {
-                    putString("STRING_KEY", insertedName)
-                    apply()
-                }
 
                 // Toast to confirm saved data
                 Toast.makeText(this, "Comment Saved", Toast.LENGTH_SHORT).show()
@@ -83,13 +76,8 @@ class MainActivity : AppCompatActivity() {
            }
            builder.setOnDismissListener {
 
-            }
+           }
 
-
-            //Aktualny dzien
-            //val dzisiaj = LocalDate.now().toString()
-            //val textViewMainActivity = findViewById<TextView>(R.id.textView_position)
-            //textViewMainActivity.setText(dzisiaj)
         }
     } // onCreate FINISHES
 

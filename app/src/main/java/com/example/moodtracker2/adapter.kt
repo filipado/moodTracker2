@@ -1,10 +1,17 @@
 package com.example.moodtracker2
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.mood_layout.view.*
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 class MyViewHolder(val view : View):RecyclerView.ViewHolder(view){}
 
@@ -17,7 +24,17 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
         return MyViewHolder(moodInflater)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+        val sharedPref = holder.view.context.getSharedPreferences("mood", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        //Get the current date
+        val date = LocalDateTime.now().toString()
+
+        editor.putInt(date, position)
+        editor.apply()
 
         val context = holder.view.context
 
@@ -28,6 +45,7 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
         when(moodSelected){
             0 -> {emoji.setImageResource(R.drawable.smiley_super_happy)
                 background.setBackgroundColor(context.resources.getColor(R.color.banana_yellow))
+
             }
 
             1 -> {emoji.setImageResource(R.drawable.smiley_happy)
