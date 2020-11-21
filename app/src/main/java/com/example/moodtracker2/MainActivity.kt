@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             adapter = MyAdapter()
 
             // This makes mood_layout snap to grid when scrolling
-            PagerSnapHelper().attachToRecyclerView(this)
+            //PagerSnapHelper().attachToRecyclerView(this)
         }
 
 

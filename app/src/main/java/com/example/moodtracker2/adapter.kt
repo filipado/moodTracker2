@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.mood_layout.view.*
 import java.security.AccessController.getContext
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 //initiating ViewHolder
@@ -30,7 +31,7 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
         val context = holder.view.context
 
         //Get the current date to be able to choose the mood for the day and be able to add it to history activity
-        val date = LocalDateTime.now().toString()
+        val date = LocalDate.now().toString()
 
         //Adding Shared Preferences to be able to access the position from other activities
         val sharedPref = holder.view.context.getSharedPreferences("mood", MODE_PRIVATE)

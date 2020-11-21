@@ -26,7 +26,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //YESTERDAY LAYOUT SET-UP
         //get yesterday's date
-        val yesterday = today.minusDays(1).toString()
+        val yesterday = today.minusDays(0).toString()
         //get yesterday's mood
         val yesterdayMood = sharedPref.getInt(yesterday, -1)
         //get yesterday comment value
