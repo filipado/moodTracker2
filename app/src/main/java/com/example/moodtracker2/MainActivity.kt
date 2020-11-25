@@ -30,14 +30,14 @@ class MainActivity : AppCompatActivity() {
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(
-                this@MainActivity,
+                application,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
             adapter = MyAdapter()
 
             // This makes mood_layout snap to grid when scrolling
-            //PagerSnapHelper().attachToRecyclerView(this)
+            PagerSnapHelper().attachToRecyclerView(this)
         }
 
 
@@ -61,9 +61,6 @@ class MainActivity : AppCompatActivity() {
 
                 editor.putString(date, comment)
                 editor.apply()
-
-                //ACCESSING COMMENT WRITTEN BY USER in AlertDialog.Builder - val builder
-
 
                 // Toast to confirm saved data
                 Toast.makeText(this, "Comment Saved", Toast.LENGTH_SHORT).show()

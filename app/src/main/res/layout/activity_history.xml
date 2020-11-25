@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/comment_7daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/one_week_ago_constraintLayout" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/comment_6daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -98,7 +98,7 @@
         app:layout_constraintTop_toBottomOf="@+id/six_days_ago_constraintLayout" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/comment_5daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -130,7 +130,7 @@
         app:layout_constraintTop_toBottomOf="@+id/five_days_ago_constraintLayout" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/comment_4daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -138,17 +138,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/four_days_ago_constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/four_days_ago_constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/five_days_ago_constraintLayout"
-        app:srcCompat="@drawable/ic_comment_black_48px" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/three_days_ago_constraintLayout"
-        app:layout_constraintEnd_toEndOf="@+id/three_days_ago_constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout"
         app:srcCompat="@drawable/ic_comment_black_48px" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -159,7 +148,19 @@
         app:layout_constraintBottom_toTopOf="@+id/two_days_ago_constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout"
-        app:layout_constraintWidth_percent="0.3" />
+        app:layout_constraintWidth_percent="0.3" >
+
+        <ImageView
+            android:id="@+id/comment_3daysAgo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_comment_black_48px" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView9"
@@ -195,7 +196,7 @@
         app:layout_constraintTop_toBottomOf="@+id/three_days_ago_constraintLayout" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/comment_2daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -227,7 +228,7 @@
         app:layout_constraintTop_toBottomOf="@+id/two_days_ago_constraintLayout" />
 
     <ImageView
-        android:id="@+id/comment_imageButton"
+        android:id="@+id/comment_yesterday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"

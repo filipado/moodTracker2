@@ -44,9 +44,9 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
         //Adding values and "when" method to initiate recycler view data
         val emoji = holder.view.emoji_img
         val background = holder.view.moodLayout_id
-        val moodSelected = position
 
-        when(moodSelected){
+
+        when(position){
             0 -> {emoji.setImageResource(R.drawable.smiley_super_happy)
                 background.setBackgroundColor(context.resources.getColor(R.color.banana_yellow))
             }
