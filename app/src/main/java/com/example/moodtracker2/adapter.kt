@@ -29,7 +29,7 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
         val context = holder.view.context
-
+/*
         //Get the current date to be able to choose the mood for the day and be able to add it to history activity
         val date = LocalDate.now().toString()
 
@@ -41,6 +41,8 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
         editor.putInt(date, position)
         editor.apply()
 
+
+ */
         //Adding values and "when" method to initiate recycler view data
         val emoji = holder.view.emoji_img
         val background = holder.view.moodLayout_id

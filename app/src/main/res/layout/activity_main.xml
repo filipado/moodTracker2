@@ -42,4 +42,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_history_black" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Show visible position"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerview_id"
+        app:layout_constraintEnd_toStartOf="@+id/history_btn"
+        app:layout_constraintStart_toEndOf="@+id/btn_addNote" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

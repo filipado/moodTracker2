@@ -28,7 +28,7 @@ class HistoryActivity : AppCompatActivity() {
         //shared preferences to access comments
         val sharedPrefComment = getSharedPreferences("comment", MODE_PRIVATE)
 
-        //importing banks from the Mood Bank
+        //importing moods from the Mood Bank
         val moods = MoodBank(applicationContext).getMoods()
 
 

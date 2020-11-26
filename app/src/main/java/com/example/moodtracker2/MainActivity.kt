@@ -12,10 +12,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.comment_edit_text.*
 import java.time.LocalDate
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,19 +27,41 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //Adding RecyclerView
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview_id)
 
-        recyclerView.run {
+        recyclerview_id.run {
             layoutManager = LinearLayoutManager(
                 application,
                 LinearLayoutManager.HORIZONTAL,
                 false
             )
+
             adapter = MyAdapter()
 
             // This makes mood_layout snap to grid when scrolling
             PagerSnapHelper().attachToRecyclerView(this)
+
+            //TRYING TO EXPORT THE VISIBLE POSITION FROM HERE
+
+            val position = (recyclerview_id?.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+            //creating instance of Shared Preferences
+            val positionSP = getSharedPreferences("mood", Context.MODE_PRIVATE)
+            val editor = positionSP.edit()
+            val date = LocalDate.now().toString()
+
+            editor.putInt(date, position)
+            editor.apply()
         }
+
+       // var visibleChild = recyclerview_id.getChildAt(recyclerview_id.childCount.minus(1))
+       // val lastChild: Int = recyclerview_id.getChildAdapterPosition(visibleChild)
+       // val positionSP = getSharedPreferences("mood", Context.MODE_PRIVATE)
+       // val editor = positionSP.edit()
+       // val date = LocalDate.now().toString()
+
+       // editor.putInt(date, lastChild)
+       // editor.apply()
+
 
 
         //Adding AlertDialog to add comments
@@ -74,7 +97,6 @@ class MainActivity : AppCompatActivity() {
            builder.setOnDismissListener {
 
            }
-
         }
     } // onCreate FINISHES
 
