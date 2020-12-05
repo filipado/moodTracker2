@@ -20,21 +20,17 @@ class MoodBank(private val context: Context) {
             ),
             3 to Mood(
                 R.color.warm_grey,
-                0.4F
+                0.45F
             ),
             4 to Mood(
                 R.color.faded_red,
-                0.2F
+                0.3F
             ),
             //set default mood
             9 to Mood(
                 R.color.white,
                 1.2F
             )
-
-
         )
     }
 }
-
-// val numbersMap = mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key4" to 1)

@@ -5,18 +5,19 @@
     android:id="@+id/history_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E4E4E4"
     tools:context=".HistoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        app:layout_constraintWidth_percent=".3"
         android:id="@+id/one_week_ago_constraintLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/warm_grey"
         app:layout_constraintBottom_toTopOf="@+id/six_days_ago_constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".3" />
 
     <TextView
         android:id="@+id/textView2"
@@ -41,9 +42,9 @@
         app:srcCompat="@drawable/ic_comment_black_48px" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-
         android:id="@+id/six_days_ago_constraintLayout"
+
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/warm_grey"
         app:layout_constraintBottom_toTopOf="@+id/five_days_ago_constraintLayout"
@@ -53,12 +54,12 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Six days ago"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/six_days_ago_constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/one_week_ago_constraintLayout" />
 
@@ -74,8 +75,8 @@
         app:srcCompat="@drawable/ic_comment_black_48px" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
         android:id="@+id/five_days_ago_constraintLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/warm_grey"
@@ -83,7 +84,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/six_days_ago_constraintLayout"
         app:layout_constraintWidth_percent="0.3" />
-
 
 
     <TextView
@@ -148,7 +148,7 @@
         app:layout_constraintBottom_toTopOf="@+id/two_days_ago_constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout"
-        app:layout_constraintWidth_percent="0.3" >
+        app:layout_constraintWidth_percent="0.3">
 
         <ImageView
             android:id="@+id/comment_3daysAgo"
@@ -166,16 +166,16 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Three days ago"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:text="Three days ago"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/three_days_ago_constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
         android:id="@+id/two_days_ago_constraintLayout"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/warm_grey"
         app:layout_constraintBottom_toTopOf="@+id/yesterday_constraintLayout"
@@ -207,14 +207,14 @@
         app:srcCompat="@drawable/ic_comment_black_48px" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
         android:id="@+id/yesterday_constraintLayout"
-        app:layout_constraintWidth_percent="0.3"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/warm_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/two_days_ago_constraintLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/two_days_ago_constraintLayout"
+        app:layout_constraintWidth_percent="0.3" />
 
     <TextView
         android:id="@+id/yesterday_textView"
