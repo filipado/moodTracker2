@@ -1,5 +1,6 @@
 package com.example.moodtracker2
 
 data class Mood(val colour: Int,
-                var width: Float)
+                val width: Float,
+                val message: String)
 

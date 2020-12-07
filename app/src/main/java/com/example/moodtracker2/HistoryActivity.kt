@@ -30,7 +30,7 @@ class HistoryActivity : AppCompatActivity() {
         val sharedPrefComment = getSharedPreferences("comment", MODE_PRIVATE)
 
         //importing moods from the Mood Bank
-        val moods = MoodBank(applicationContext).getMoods()
+        val moods = MoodBank().getMoods()
 
 
         //YESTERDAY LAYOUT SET-UP
@@ -45,30 +45,21 @@ class HistoryActivity : AppCompatActivity() {
         yesterday_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutYesterday!!.colour))
 
         //adding sharing functionality
-        yesterday_constraintLayout.setOnClickListener{
+        if (yesterdayMood!=9) yesterday_constraintLayout.setOnClickListener{
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain";
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood is...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi! " +
-                    "I wanted to share my mood with you today from my Mood Tracker App. " +
-                    "If you would like to track your mood everyday for a week and share it with your friends, you can download it from Google App Store!")
-
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutYesterday.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
             startActivity(Intent.createChooser(intent, "Send Email"))
         }
 
         //make comment button visible and add toast to show comment
         when (val yesterdayComment = sharedPrefComment.getString(yesterday, null)) {
-            null -> {
-                comment_yesterday.visibility = INVISIBLE
-            }
-            "" -> {
-                comment_yesterday.visibility = INVISIBLE
-            }
+            null, "" -> comment_yesterday.visibility = INVISIBLE
             else -> {comment_yesterday.visibility = VISIBLE
                 comment_yesterday.setOnClickListener{
                     Toast.makeText(this, yesterdayComment, Toast.LENGTH_SHORT).show()}}
         }
-
 
         //TWO DAYS AGO LAYOUT SET-UP:
 
@@ -83,24 +74,16 @@ class HistoryActivity : AppCompatActivity() {
         two_days_ago_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutTwoDaysAgo!!.colour))
 
         //adding sharing functionality
-        two_days_ago_constraintLayout.setOnClickListener{
+        if (twoDaysAgoMood!=9) two_days_ago_constraintLayout.setOnClickListener{
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain";
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood is...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi! " +
-                    "I wanted to share my mood with you today from my Mood Tracker App. " +
-                    "If you would like to track your mood everyday for a week and share it with your friends, you can download it from Google App Store!")
-
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutTwoDaysAgo.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
             startActivity(Intent.createChooser(intent, "Send Email"))
         }
         //make comment button visible and add toast to show comment
         when (val twoDaysAgoComment = sharedPrefComment.getString(twoDaysAgo, null)) {
-            null -> {
-                comment_2daysAgo.visibility = View.INVISIBLE
-            }
-            "" -> {
-                comment_2daysAgo.visibility = View.INVISIBLE
-            }
+            null, "" -> comment_2daysAgo.visibility = View.INVISIBLE
             else -> {comment_2daysAgo.visibility = VISIBLE
                 comment_2daysAgo.setOnClickListener{
                     Toast.makeText(this, twoDaysAgoComment, Toast.LENGTH_SHORT).show()}}
@@ -119,25 +102,17 @@ class HistoryActivity : AppCompatActivity() {
         three_days_ago_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutThreeDaysAgo!!.colour))
 
         //adding sharing functionality
-        three_days_ago_constraintLayout.setOnClickListener{
+        if (threeDaysAgoMood!=9) three_days_ago_constraintLayout.setOnClickListener{
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain";
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood is...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi! " +
-                    "I wanted to share my mood with you today from my Mood Tracker App. " +
-                    "If you would like to track your mood everyday for a week and share it with your friends, you can download it from Google App Store!")
-
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutThreeDaysAgo.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
             startActivity(Intent.createChooser(intent, "Send Email"))
         }
 
         //make comment button visible and add toast to show comment
         when (val threeDaysAgoComment = sharedPrefComment.getString(threeDaysAgo, null)) {
-            null -> {
-                comment_3daysAgo.visibility = View.INVISIBLE
-            }
-            "" -> {
-                comment_3daysAgo.visibility = View.INVISIBLE
-            }
+            null, "" -> comment_3daysAgo.visibility = View.INVISIBLE
             else -> {
                 comment_3daysAgo.visibility = VISIBLE
                 comment_3daysAgo.setOnClickListener {
@@ -157,29 +132,21 @@ class HistoryActivity : AppCompatActivity() {
         four_days_ago_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutFourDaysAgo!!.colour))
 
         //adding sharing functionality
-        four_days_ago_constraintLayout.setOnClickListener{
+        if (fourDaysAgoMood!=9) four_days_ago_constraintLayout.setOnClickListener{
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain";
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood is...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi! " +
-                    "I wanted to share my mood with you today from my Mood Tracker App. " +
-                    "If you would like to track your mood everyday for a week and share it with your friends, you can download it from Google App Store!")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+            intent.putExtra(Intent.EXTRA_TEXT, "\"Hi, I felt ${moodLayoutFourDaysAgo.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.\"")
 
             startActivity(Intent.createChooser(intent, "Send Email"))
         }
 
         when (val fourDaysAgoComment = sharedPrefComment.getString(fourDaysAgo, null)) {
-            null -> {
-                comment_4daysAgo.visibility = View.INVISIBLE
-            }
-            "" -> {
-                comment_4daysAgo.visibility = View.INVISIBLE
-            }
+            null, "" -> comment_4daysAgo.visibility = View.INVISIBLE
             else -> {comment_4daysAgo.visibility = VISIBLE
                 comment_4daysAgo.setOnClickListener {
                     Toast.makeText(this, fourDaysAgoComment, Toast.LENGTH_SHORT).show()}}
         }
-
 
         //FIVE DAYS AGO LAYOUT SET-UP:
 
@@ -194,25 +161,18 @@ class HistoryActivity : AppCompatActivity() {
         five_days_ago_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutFiveDaysAgo!!.colour))
 
         //adding sharing functionality
-        five_days_ago_constraintLayout.setOnClickListener{
+        if (fiveDaysAgoMood!=9) five_days_ago_constraintLayout.setOnClickListener{
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain";
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood is...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi! " +
-                    "I wanted to share my mood with you today from my Mood Tracker App. " +
-                    "If you would like to track your mood everyday for a week and share it with your friends, you can download it from Google App Store!")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutFiveDaysAgo.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
 
             startActivity(Intent.createChooser(intent, "Send Email"))
         }
 
         //make comment button visible and add toast to show comment
         when (val fiveDaysAgoComment = sharedPrefComment.getString(fiveDaysAgo, null)) {
-            null -> {
-                comment_5daysAgo.visibility = View.INVISIBLE
-            }
-            "" -> {
-                comment_5daysAgo.visibility = View.INVISIBLE
-            }
+            null, "" -> comment_5daysAgo.visibility = View.INVISIBLE
             else -> {comment_5daysAgo.visibility = VISIBLE
                 comment_5daysAgo.setOnClickListener{
                     Toast.makeText(this, fiveDaysAgoComment, Toast.LENGTH_SHORT).show()}}
@@ -231,25 +191,18 @@ class HistoryActivity : AppCompatActivity() {
         six_days_ago_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutSixDaysAgo!!.colour))
 
         //adding sharing functionality
-        six_days_ago_constraintLayout.setOnClickListener{
+        if (sixDaysAgoMood!=9) six_days_ago_constraintLayout.setOnClickListener{
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain";
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood is...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi! " +
-                    "I wanted to share my mood with you today from my Mood Tracker App. " +
-                    "If you would like to track your mood everyday for a week and share it with your friends, you can download it from Google App Store!")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutSixDaysAgo.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
 
             startActivity(Intent.createChooser(intent, "Send Email"))
         }
 
         //get sixDaysAgo comment value
         when (val sixDaysAgoComment = sharedPrefComment.getString(sixDaysAgo, null)) {
-            null -> {
-                comment_6daysAgo.visibility = View.INVISIBLE
-            }
-            "" -> {
-                comment_6daysAgo.visibility = View.INVISIBLE
-            }
+            null, "" -> comment_6daysAgo.visibility = View.INVISIBLE
             else -> {comment_6daysAgo.visibility = VISIBLE
                 comment_6daysAgo.setOnClickListener{
                     Toast.makeText(this, sixDaysAgoComment, Toast.LENGTH_SHORT).show()}}
@@ -268,25 +221,18 @@ class HistoryActivity : AppCompatActivity() {
         one_week_ago_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutOneWeekAgo!!.colour))
 
         //adding sharing functionality
-        one_week_ago_constraintLayout.setOnClickListener{
+        if (sevenDaysAgoMood!=9) one_week_ago_constraintLayout.setOnClickListener{
             val intent = Intent(Intent.ACTION_SEND)
             intent.type = "text/plain";
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood is...")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi! " +
-                    "I wanted to share my mood with you today from my Mood Tracker App. " +
-                    "If you would like to track your mood everyday for a week and share it with your friends, you can download it from Google App Store!")
+            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutOneWeekAgo.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
 
             startActivity(Intent.createChooser(intent, "Send Email"))
         }
 
         //get sevenDaysAgo comment value
         when (val sevenDaysAgoComment = sharedPrefComment.getString(sevenDaysAgo, null)) {
-            null -> {
-                comment_7daysAgo.visibility = View.INVISIBLE
-            }
-            "" -> {
-                comment_7daysAgo.visibility = View.INVISIBLE
-            }
+            null, "" -> comment_7daysAgo.visibility = View.INVISIBLE
         else -> {comment_7daysAgo.visibility = VISIBLE
         comment_7daysAgo.setOnClickListener{
             Toast.makeText(this, sevenDaysAgoComment, Toast.LENGTH_SHORT).show()
