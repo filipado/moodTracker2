@@ -2,20 +2,15 @@ package com.example.moodtracker2
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.comment_edit_text.*
 import java.time.LocalDate
 
@@ -39,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
-                    var firstElementPosition = ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
+                    val firstElementPosition = ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
 
                     //Get the current date to be able to choose the mood for the day and be able to add it to history activity
                     val date = LocalDate.now().toString()
@@ -94,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
     fun history(view: View) {
         // New Activity to open HistoryActivity
-        var historyActivity: Intent = Intent(applicationContext, HistoryActivity::class.java)
+        val historyActivity = Intent(applicationContext, HistoryActivity::class.java)
         startActivity(historyActivity)
     }
 } // MAIN ACTIVITY FINISHES

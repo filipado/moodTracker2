@@ -5,7 +5,6 @@
     android:id="@+id/history_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E4E4E4"
     tools:context=".HistoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,30 +19,30 @@
         app:layout_constraintWidth_percent=".3" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/one_week_ago_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="One week ago"
+        android:text="@string/one_week_ago"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
         android:id="@+id/comment_7daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
+        android:contentDescription="@string/CD_one_week_ago"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/one_week_ago_constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/one_week_ago_constraintLayout"
         app:layout_constraintTop_toTopOf="@+id/one_week_ago_constraintLayout"
-        app:srcCompat="@drawable/ic_comment_black_48px" />
+        app:srcCompat="@drawable/ic_comment_black_48px"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/six_days_ago_constraintLayout"
-
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/warm_grey"
@@ -53,21 +52,22 @@
         app:layout_constraintWidth_percent="0.3" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/six_days_ago_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Six days ago"
+        android:text="@string/six_days_ago"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/six_days_ago_constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/one_week_ago_constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/one_week_ago_constraintLayout"/>
 
     <ImageView
         android:id="@+id/comment_6daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
+        android:contentDescription="@string/CD_six_days_ago"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/six_days_ago_constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/six_days_ago_constraintLayout"
@@ -87,21 +87,22 @@
 
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/five_days_ago_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Five days ago"
+        android:text="@string/five_days_ago"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/five_days_ago_constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/six_days_ago_constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/six_days_ago_constraintLayout"/>
 
     <ImageView
         android:id="@+id/comment_5daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
+        android:contentDescription="@string/CD_five_days_ago"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/five_days_ago_constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/five_days_ago_constraintLayout"
@@ -119,21 +120,22 @@
         app:layout_constraintWidth_percent=".3" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/four_days_ago_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Four days ago"
+        android:text="@string/four_days_ago"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/four_days_ago_constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/five_days_ago_constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/five_days_ago_constraintLayout"/>
 
     <ImageView
         android:id="@+id/comment_4daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
+        android:contentDescription="@string/CD_four_days_ago"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/four_days_ago_constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/four_days_ago_constraintLayout"
@@ -150,28 +152,30 @@
         app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout"
         app:layout_constraintWidth_percent="0.3">
 
-        <ImageView
-            android:id="@+id/comment_3daysAgo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_comment_black_48px" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:id="@+id/comment_3daysAgo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/CD_three_days_ago"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/three_days_ago_constraintLayout"
+        app:layout_constraintEnd_toEndOf="@+id/three_days_ago_constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout"
+        app:srcCompat="@drawable/ic_comment_black_48px" />
+
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/three_days_ago_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Three days ago"
+        android:text="@string/three_days_ago"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/three_days_ago_constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/four_days_ago_constraintLayout"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/two_days_ago_constraintLayout"
@@ -184,22 +188,23 @@
         app:layout_constraintWidth_percent="0.3" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/two_days_ago_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Two days ago"
+        android:text="@string/two_days_ago"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/two_days_ago_constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/three_days_ago_constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/three_days_ago_constraintLayout"/>
 
     <ImageView
         android:id="@+id/comment_2daysAgo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
+        android:contentDescription="@string/CD_two_days_ago"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/two_days_ago_constraintLayout"
         app:layout_constraintEnd_toEndOf="@+id/two_days_ago_constraintLayout"
@@ -222,16 +227,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Yesterday"
+        android:text="@string/yesterday"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/yesterday_constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/two_days_ago_constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/two_days_ago_constraintLayout"/>
 
     <ImageView
         android:id="@+id/comment_yesterday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
+        android:contentDescription="@string/CD_from_yesterday"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/yesterday_constraintLayout"

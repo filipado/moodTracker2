@@ -1,7 +1,23 @@
 <resources>
     <string name="app_name">Mood Tracker 2</string>
-    <string name="title">Comment</string>
-    <string name="supporting_text">Type in your comment</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="one_week_ago">One week ago</string>
+    <string name="six_days_ago">Six days ago</string>
+    <string name="five_days_ago">Five days ago</string>
+    <string name="four_days_ago">Four days ago</string>
+    <string name="three_days_ago">Three days ago</string>
+    <string name="two_days_ago">Two days ago</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="CD_one_week_ago">This will show you comment from one week ago.</string>
+    <string name="CD_six_days_ago">This will show you comment from six days ago.</string>
+    <string name="CD_five_days_ago">This will show you comment from five days ago.</string>
+    <string name="CD_four_days_ago">This will show you comment from four days ago.</string>
+    <string name="CD_three_days_ago">This will show you comment from three days ago.</string>
+    <string name="CD_two_days_ago">This will show you comment from two days ago.</string>
+    <string name="CD_from_yesterday">This will show you comment from yesterday.</string>
+    <string name="comment">Comment</string>
+    <string name="enter_your_comment_here">Enter your comment here</string>
+    <string name="CD_comment_button_main_activity">This will allow you to add comment to your current mood.</string>
+    <string name="CD_history_button_main_activity">This will take you to the history page, where you can check your moods from last week.</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.moodtracker2
 
-import android.content.Context.MODE_PRIVATE
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +7,9 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.mood_layout.view.*
-import java.security.AccessController.getContext
-import java.time.LocalDate
-import java.time.LocalDateTime
 
 //initiating ViewHolder
-class MyViewHolder(val view : View):RecyclerView.ViewHolder(view){}
+class MyViewHolder(val view : View):RecyclerView.ViewHolder(view)
 
 //initiating Adapter
 class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
