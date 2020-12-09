@@ -26,7 +26,7 @@ class MyAdapter : RecyclerView.Adapter<MyViewHolder>(){
 
         val context = holder.view.context
 
-        //Adding values and "when" method to initiate recycler view data
+        //Adding values and "when" expression to explain recycler view different positions
 
         val emoji = holder.view.emoji_img
         val background = holder.view.moodLayout_id

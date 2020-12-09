@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mood Tracker 2</string>
+    <string name="app_name">Mood Tracker</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
     <string name="one_week_ago">One week ago</string>
