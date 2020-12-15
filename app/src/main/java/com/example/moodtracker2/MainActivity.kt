@@ -10,16 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.jakewharton.threetenabp.AndroidThreeTen
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.comment_edit_text.*
-import java.time.LocalDate
-
 
 class MainActivity : AppCompatActivity() {
 
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+           
+        //initialize timezone information for ThreeTenBP library
+        AndroidThreeTen.init(this)
 
         //Adding RecyclerView
 
@@ -37,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                     val firstElementPosition = ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
 
                     //Get the current date to be able to choose the mood for the day and be able to add it to history activity
-                    val date = LocalDate.now().toString()
+                    val date = org.threeten.bp.LocalDate.now().toString()
 
                     //Adding Shared Preferences to be able to access the position from other activities
                     val sharedPref = getSharedPreferences("mood", MODE_PRIVATE)
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 //creating instance of Shared Preferences
                 val pref = getSharedPreferences("comment", Context.MODE_PRIVATE)
                 val editor = pref.edit()
-                val date = LocalDate.now().toString()
+                val date = org.threeten.bp.LocalDate.now().toString()
                 val comment = builder.comment_editText.text.toString()
 
                 editor.putString(date, comment)
