@@ -5,15 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
-import com.jakewharton.threetenabp.AndroidThreeTen
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.comment_edit_text.*
+import java.time.LocalDate
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,46 +21,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //initialising timezone information
-        AndroidThreeTen.init(this)
-
         //Adding RecyclerView
 
         recyclerview_id.run {
-            layoutManager = LinearLayoutManager(
-                application,
-                LinearLayoutManager.HORIZONTAL,
-                false
-            )
-
+            layoutManager = LinearLayoutManager(application, LinearLayoutManager.HORIZONTAL, false)
             adapter = MyAdapter()
 
             // This makes mood_layout snap to grid when scrolling
             PagerSnapHelper().attachToRecyclerView(this)
 
-            //TRYING TO EXPORT THE VISIBLE POSITION FROM HERE
+            //We are adding OnScroll Listener to get the visible position of the recycler view
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+                    val firstElementPosition = ((recyclerView.layoutManager) as LinearLayoutManager).findFirstVisibleItemPosition()
 
-            val position = (recyclerview_id?.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                    //Get the current date to be able to choose the mood for the day and be able to add it to history activity
+                    val date = LocalDate.now().toString()
 
-            //creating instance of Shared Preferences
-            val positionSP = getSharedPreferences("mood", Context.MODE_PRIVATE)
-            val editor = positionSP.edit()
-            val date = org.threeten.bp.LocalDate.now().toString()
+                    //Adding Shared Preferences to be able to access the position from other activities
+                    val sharedPref = getSharedPreferences("mood", MODE_PRIVATE)
+                    val editor = sharedPref.edit()
 
-            editor.putInt(date, position)
-            editor.apply()
+                    //Extracting position through shared preferences
+                    editor.putInt(date, firstElementPosition)
+                    editor.apply()
+                }
+            })
+
         }
-
-       // var visibleChild = recyclerview_id.getChildAt(recyclerview_id.childCount.minus(1))
-       // val lastChild: Int = recyclerview_id.getChildAdapterPosition(visibleChild)
-       // val positionSP = getSharedPreferences("mood", Context.MODE_PRIVATE)
-       // val editor = positionSP.edit()
-       // val date = LocalDate.now().toString()
-
-       // editor.putInt(date, lastChild)
-       // editor.apply()
-
-
 
         //Adding AlertDialog to add comments
         btn_addNote.setOnClickListener {
@@ -78,14 +66,12 @@ class MainActivity : AppCompatActivity() {
                 //creating instance of Shared Preferences
                 val pref = getSharedPreferences("comment", Context.MODE_PRIVATE)
                 val editor = pref.edit()
-                val date = org.threeten.bp.LocalDate.now().toString()
+                val date = LocalDate.now().toString()
                 val comment = builder.comment_editText.text.toString()
 
                 editor.putString(date, comment)
                 editor.apply()
 
-                // Toast to confirm saved data
-                Toast.makeText(this, "Comment Saved", Toast.LENGTH_SHORT).show()
                 //close Dialog on CONFIRM button click
                 builder.dismiss()
            }
@@ -103,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 
     fun history(view: View) {
         // New Activity to open HistoryActivity
-        var historyActivity: Intent = Intent(applicationContext, HistoryActivity::class.java)
+        val historyActivity = Intent(applicationContext, HistoryActivity::class.java)
         startActivity(historyActivity)
     }
 } // MAIN ACTIVITY FINISHES

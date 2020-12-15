@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -25,7 +25,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginBottom="24dp"
         android:background="@android:color/transparent"
-        android:onClick="addNote"
+        android:contentDescription="@string/CD_comment_button_main_activity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_note_add_black" />
@@ -37,19 +37,10 @@
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="24dp"
         android:background="@android:color/transparent"
+        android:contentDescription="@string/CD_history_button_main_activity"
         android:onClick="history"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_history_black" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Show visible position"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerview_id"
-        app:layout_constraintEnd_toStartOf="@+id/history_btn"
-        app:layout_constraintStart_toEndOf="@+id/btn_addNote" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
