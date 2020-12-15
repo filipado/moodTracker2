@@ -2,29 +2,28 @@ package com.example.moodtracker2
 
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
+import com.jakewharton.threetenabp.AndroidThreeTen
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.comment_edit_text.*
-import java.time.LocalDate
 
 
 class MainActivity : AppCompatActivity() {
 
-    @RequiresApi(Build.VERSION_CODES.O)
-
        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //initialising timezone information
+        AndroidThreeTen.init(this)
 
         //Adding RecyclerView
 
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             //creating instance of Shared Preferences
             val positionSP = getSharedPreferences("mood", Context.MODE_PRIVATE)
             val editor = positionSP.edit()
-            val date = LocalDate.now().toString()
+            val date = org.threeten.bp.LocalDate.now().toString()
 
             editor.putInt(date, position)
             editor.apply()
@@ -79,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 //creating instance of Shared Preferences
                 val pref = getSharedPreferences("comment", Context.MODE_PRIVATE)
                 val editor = pref.edit()
-                val date = LocalDate.now().toString()
+                val date = org.threeten.bp.LocalDate.now().toString()
                 val comment = builder.comment_editText.text.toString()
 
                 editor.putString(date, comment)

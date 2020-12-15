@@ -9,19 +9,22 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.jakewharton.threetenabp.AndroidThreeTen
 import kotlinx.android.synthetic.main.activity_history.*
 import java.time.LocalDate
 
 
 class HistoryActivity : AppCompatActivity() {
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
-        //get today LocalDate value
-        val today = LocalDate.now()
+        //initializing timezone information
+        AndroidThreeTen.init(this)
 
+
+        //get today LocalDate value
+        val today = org.threeten.bp.LocalDate.now()
         //shared preferences to access moods
         val sharedPref = getSharedPreferences("mood", MODE_PRIVATE)
 
