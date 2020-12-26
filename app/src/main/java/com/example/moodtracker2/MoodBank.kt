@@ -29,7 +29,7 @@ class MoodBank {
                 0.3F,
                 "sad"
             ),
-            //set default mood
+            //set default/blank mood
             9 to Mood(
                 R.color.white,
                 1.2F,

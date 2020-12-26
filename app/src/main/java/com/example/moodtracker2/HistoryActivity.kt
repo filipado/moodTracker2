@@ -4,11 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.jakewharton.threetenabp.AndroidThreeTen
-import kotlinx.android.synthetic.main.activity_history.*
 
 class HistoryActivity : AppCompatActivity() {
 
@@ -19,46 +19,75 @@ class HistoryActivity : AppCompatActivity() {
         //initialize timezone information for ThreeTenBP library
         AndroidThreeTen.init(this)
 
-        //get today LocalDate value
-        val today = org.threeten.bp.LocalDate.now()
+        //loop repeating setLayout function for period of 7 days
+        for (i in 1..7){
 
-        //shared preferences to access moods
+            //getting day according to the i
+            val day = DayBank().getDays()[i]
+
+            //setting layout in accordance to setLayout function -> see below
+            if (day != null) {
+                setLayout(day)
+            }
+        }
+    }
+
+    //functions:
+
+    //elective functionality - allows to share the mood with relevant mood and day values
+    private fun shareMood(mood: Mood, day: Day) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
+        intent.putExtra(
+            Intent.EXTRA_TEXT,
+            "Hi, I felt ${mood.message} ${day.dayStringForComment}. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store."
+        )
+        startActivity(Intent.createChooser(intent, "Send Email"))
+    }
+
+    //function that sets the layout according to the day
+    private fun setLayout(day: Day){
+
+        //shared preferences to access selected moods and comments
         val sharedPref = getSharedPreferences("mood", MODE_PRIVATE)
-
-        //shared preferences to access comments
         val sharedPrefComment = getSharedPreferences("comment", MODE_PRIVATE)
 
-        //importing moods from the Mood Bank
+        //get moods and time value
         val moods = MoodBank().getMoods()
+        val daysAgo = day.dayValueForSharedPreferences
 
+        //get mood for the day, default/blank mood is set-up
+        val daysMood = sharedPref.getInt(daysAgo, 9)
 
-        //YESTERDAY LAYOUT SET-UP
-        //get yesterday's date
-        val yesterday = today.minusDays(1).toString()
-        //get yesterday's mood
-        val yesterdayMood = sharedPref.getInt(yesterday, 9)
+        //get constraint layout and comment image view layout elements
+        val layout = findViewById<ConstraintLayout>(day.constraintLayout)
+        val commentImageButton = findViewById<ImageView>(day.commentButton)
 
-        //now set the layout according to mood
-        val moodLayoutYesterday = moods[yesterdayMood]
-        (yesterday_constraintLayout.layoutParams as ConstraintLayout.LayoutParams).matchConstraintPercentWidth = moodLayoutYesterday!!.width
-        yesterday_constraintLayout.setBackgroundColor(resources.getColor(moodLayoutYesterday.colour))
+        //now set the mood in relevant to the day
+        val moodLayoutDaysAgo = moods[daysMood]
 
-        //adding sharing functionality
-        if (yesterdayMood!=9) yesterday_constraintLayout.setOnClickListener{
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutYesterday.message} yesterday. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
-            startActivity(Intent.createChooser(intent, "Send Email"))
+        //change layout width and colour
+        (layout.layoutParams as ConstraintLayout.LayoutParams).matchConstraintPercentWidth = moodLayoutDaysAgo!!.width
+        layout.setBackgroundColor(resources.getColor(moodLayoutDaysAgo.colour))
+
+        //add sharing functionality using shareMood function
+        if (daysMood!=9) layout.setOnClickListener{
+            shareMood(moodLayoutDaysAgo, day)
         }
 
-        //make comment button visible and add toast to show comment
-        when (val yesterdayComment = sharedPrefComment.getString(yesterday, null)) {
-            null, "" -> comment_yesterday.visibility = INVISIBLE
-            else -> {comment_yesterday.visibility = VISIBLE
-                comment_yesterday.setOnClickListener{
-                    Toast.makeText(this, yesterdayComment, Toast.LENGTH_SHORT).show()}}
+        //make comment button visible and show comment using Toast
+        when (val daysAgoComment = sharedPrefComment.getString(daysAgo, null)) {
+            null, "" -> commentImageButton.visibility = INVISIBLE
+            else -> {commentImageButton.visibility = VISIBLE
+                commentImageButton.setOnClickListener{
+                    Toast.makeText(this, daysAgoComment, Toast.LENGTH_SHORT).show()}}
         }
+    }
+}
+
+/* OLD CODE
+
 
         //TWO DAYS AGO LAYOUT SET-UP:
 
@@ -74,11 +103,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //adding sharing functionality
         if (twoDaysAgoMood!=9) two_days_ago_constraintLayout.setOnClickListener{
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutTwoDaysAgo.message} two days ago. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
-            startActivity(Intent.createChooser(intent, "Send Email"))
+            shareMood(moodLayoutTwoDaysAgo)
         }
         //make comment button visible and add toast to show comment
         when (val twoDaysAgoComment = sharedPrefComment.getString(twoDaysAgo, null)) {
@@ -102,11 +127,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //adding sharing functionality
         if (threeDaysAgoMood!=9) three_days_ago_constraintLayout.setOnClickListener{
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutThreeDaysAgo.message} three days ago. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
-            startActivity(Intent.createChooser(intent, "Send Email"))
+            shareMood(moodLayoutThreeDaysAgo)
         }
 
         //make comment button visible and add toast to show comment
@@ -132,12 +153,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //adding sharing functionality
         if (fourDaysAgoMood!=9) four_days_ago_constraintLayout.setOnClickListener{
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
-            intent.putExtra(Intent.EXTRA_TEXT, "\"Hi, I felt ${moodLayoutFourDaysAgo.message} four days ago. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.\"")
-
-            startActivity(Intent.createChooser(intent, "Send Email"))
+            shareMood(moodLayoutFourDaysAgo)
         }
 
         when (val fourDaysAgoComment = sharedPrefComment.getString(fourDaysAgo, null)) {
@@ -161,12 +177,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //adding sharing functionality
         if (fiveDaysAgoMood!=9) five_days_ago_constraintLayout.setOnClickListener{
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutFiveDaysAgo.message} five days ago. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
-
-            startActivity(Intent.createChooser(intent, "Send Email"))
+            shareMood(moodLayoutFiveDaysAgo)
         }
 
         //make comment button visible and add toast to show comment
@@ -191,12 +202,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //adding sharing functionality
         if (sixDaysAgoMood!=9) six_days_ago_constraintLayout.setOnClickListener{
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutSixDaysAgo.message} six days ago. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
-
-            startActivity(Intent.createChooser(intent, "Send Email"))
+            shareMood(moodLayoutSixDaysAgo)
         }
 
         //get sixDaysAgo comment value
@@ -221,12 +227,7 @@ class HistoryActivity : AppCompatActivity() {
 
         //adding sharing functionality
         if (sevenDaysAgoMood!=9) one_week_ago_constraintLayout.setOnClickListener{
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT, "My Mood")
-            intent.putExtra(Intent.EXTRA_TEXT, "Hi, I felt ${moodLayoutOneWeekAgo.message} one week ago. If you would like to track your mood for a week and share it with your friends, download Mood Tracker from Play Store.")
-
-            startActivity(Intent.createChooser(intent, "Send Email"))
+            shareMood(moodLayoutOneWeekAgo)
         }
 
         //get sevenDaysAgo comment value
@@ -237,5 +238,5 @@ class HistoryActivity : AppCompatActivity() {
             Toast.makeText(this, sevenDaysAgoComment, Toast.LENGTH_SHORT).show()
         }}
         }
-    }
-}
+
+ */
